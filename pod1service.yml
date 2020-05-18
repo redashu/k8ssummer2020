@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: myservice1
+
+spec:
+ ports:
+  - name: mysvcport   # optional field 
+    port: 1122   # this is must and is the port of service IP 
+    targetPort: 80   #  this must match the port number of POD 
+    protocol: TCP   #  optional field
+ selector:
+  x: hello   #  this label must be same as pod label where we want to forward traffic 
+ type: NodePort 
+ 

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:   #  is important if you want your application can get the traffic from service 
+   x: hello  # label always be in key: value pair and it must be unique 
+  name: podexam  # must be unique
+spec:
+  containers:
+  - image: ngix
+    name: pod1
+    ports:
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Never
+status: {}
