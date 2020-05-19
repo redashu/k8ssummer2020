@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: ashupodenv1
+ labels:
+  x: helloenv
+
+spec:
+ containers:
+  - name: ashucc111
+    image: dockerashu/ckad:v2 
+    ports:
+     - containerPort: 80
+    env:   #  this is for replacing the ENV variable in POD 
+     - name: color  #  this must be the same variable that we define in dockerfile under ENV keywork
+       value: yellow   #  this is replaced value 
+ 

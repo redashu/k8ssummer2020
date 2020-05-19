@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+ name: myrs1
+ labels:
+  app: rsweb1  #  this is the label of RC not label of pods
+
+spec:
+ selector:
+  matchLabels:
+   x: hellors    # here alos label of pod
+ replicas: 3  #  always one pod will be present even in case of current worker node failure
+ template:
+  metadata:
+   name: mypodrs22  #  this will be the podname that will be created by RC
+   labels:
+    x: hellors
+  spec:
+   containers:
+    - name: ashucxrs111
+      image: nginx
+      ports:
+       - containerPort: 80 
+
+

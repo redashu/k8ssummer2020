@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    run: ashupod1
+  name: ashupod1
+spec:
+  volumes:
+  - name: ashuvol11
+    hostPath:   #  it will create volume on the scheduled minion 
+     path: /etc/passwd   #  file in any linux based os where all usernames are stored
+     type: File   #  above path is file
+
+  - name: ashuvol22
+    hostPath:   #  it will create volume on the scheduled minion 
+     path: /usr/share/applications/  #  file in any linux based os where all usernames are stored
+     type: Directory    #  above path is file 
+
+  - name: ashuvol33
+    hostPath:   #  it will create volume on the scheduled minion 
+     path: /var/run/docker.sock   #  file in any linux based os where all usernames are stored
+     type: Socket   #  above path is file 
+
+  containers:
+  - image: nginx
+    name: ashupod1
+    volumeMounts:
+    - name: ashuvol11
+      mountPath: /usr/share/nginx/html/index.html   #  mounting in a file 
+    ports:
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

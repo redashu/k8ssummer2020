@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+ name: myrcashu1
+ labels:
+  app: web1  #  this is the label of RC not label of pods
+
+spec:
+ replicas: 3  #  always one pod will be present even in case of current worker node failure
+ template:
+  metadata:
+   name: mypod11  #  this will be the podname that will be created by RC
+   labels:
+    x: helloadhoc
+  spec:
+   containers:
+    - name: ashucx111
+      image: nginx
+      ports:
+       - containerPort: 80 
+
+

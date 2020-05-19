@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:   #  label of pod
+    run: ashup1
+  name: ashup1   #  name of pod 
+spec:
+  containers:
+  - image: nginx   # image name from docker hub 
+    name: ashup1  # name of container 
+    ports:   #  default port  of docker image with application 
+    - containerPort: 80
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:   # label of service 
+    app: ashubestways1
+  name: ashubestways1   # name of service 
+spec:
+  ports:
+  - name: myport
+    port: 80   #  service port that is going to bind with service IP  and this port can be any thing it is not dependent on cont port
+    protocol: TCP
+    targetPort: 80  #  target port  where service will forward its traffic that is same as pod port 
+  selector:  #  is used for matching  the label of  pods 
+    run: ashup1
+  type: NodePort 
+status:
+  loadBalancer: {}
